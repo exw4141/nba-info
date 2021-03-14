@@ -1,5 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 import time # TODO remove after implementing necesary functions
 
@@ -32,13 +35,26 @@ def change_time_range(driver, time_range=1):
     else:
         raise ValueError('Invalid time range given to function. Can only use statistics for games from the whole season or the past 7 days, 14 days, or 30 days')
 
+def sort_all_defenses_by_points(driver):
+    """
+    Sorts defenses in the table with all teams by points
+
+    :param driver: Selenium WebDriver object
+    """
+    sort_by_points_element = WebDriverWait(driver, 10).until(
+        EC.visibility_of_element_located((By.XPATH, "//h2[text()='POSITION DATA']/following-sibling::div[@class='table-responsive']//table[contains(@id, 'GridView1')]//a[text()='Sort: PTS']"))
+    )
+    sort_by_points_element.click()
+
 # Main below is just for testing purposes
 if __name__ == '__main__':
     driver = webdriver.Chrome()
     driver.maximize_window()
     
     open_dvp_page(driver)
-    change_time_range(driver, 99)
+    change_time_range(driver, 14)
+
+    sort_all_defenses_by_points(driver)
     
-    time.sleep(3)
+    time.sleep(5)
     driver.close()
