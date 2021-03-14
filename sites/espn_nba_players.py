@@ -34,15 +34,3 @@ def process_player_game_log(driver):
         game_log_tab.click()
     else:
         print("Wrong webpage in use. Unable to extract player's game log")
-
-if __name__ == "__main__":
-    driver = webdriver.Chrome()
-    driver.maximize_window()
-
-    open_nba_players_page(driver)
-    player_links = get_player_links(driver)
-    for link in player_links:
-        driver.get(link)
-
-        process_player_game_log(driver)
-        open_nba_players_page(driver)
