@@ -116,7 +116,7 @@ def get_injured_player_links(driver):
     Get the hyperlinks of all players with an injury designation
 
     :param driver: Selenium WebDriver object
-    :returns: Dictionary where the names of injured players are mapped to their respective Rotowire hyperlinks
+    :returns: Dictionaries where the names of players with an injury designation are mapped to their respective Rotowire hyperlinks
     """
     out_injured_visiting_player_elements = driver.find_elements_by_xpath("//ul[contains(@class, 'is-visit')]/li[contains(@class, 'lineup__title')]/following-sibling::li[contains(@class, 'is-pct-play-0')]/a")
     out_injured_home_player_elements = driver.find_elements_by_xpath("//ul[contains(@class, 'is-home')]/li[contains(@class, 'lineup__title')]/following-sibling::li[contains(@class, 'is-pct-play-0')]/a")
