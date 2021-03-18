@@ -5,9 +5,19 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
 def open_rotowire_lineup_optimizer(driver):
+    """
+    Open the RotoWire Lineup Optimizer page
+
+    :param driver: Selenium WebDriver object
+    """
     driver.get('https://www.rotowire.com/daily/nba/optimizer.php?site=DraftKings')
 
 def search_player(driver, player_name):
+    """
+    Searches for a player within the site's player table
+
+    :param driver: Selenium WebDriver object
+    """
     current_url = driver.current_url
 
     if current_url.startswith('https://www.rotowire.com/daily/nba/optimizer.php'):
@@ -19,6 +29,11 @@ def search_player(driver, player_name):
         print("Wrong webpage in use. Unable to search for players.")
 
 def clear_search_input(driver):
+    """
+    Clear the player name textbox
+
+    :param driver: Selenium WebDriver object
+    """
     current_url = driver.current_url
 
     if current_url.startswith('https://www.rotowire.com/daily/nba/optimizer.php'):
@@ -30,6 +45,11 @@ def clear_search_input(driver):
         print("Wrong webpage in use. Unable to clear player search.")
 
 def sort_players_by_value(driver):
+    """
+    Sort players in the table by projected value. Assumes the players are not sorted by value yet.
+
+    :param driver: Selenium WebDriver object
+    """
     current_url = driver.current_url
 
     if current_url.startswith('https://www.rotowire.com/daily/nba/optimizer.php'):
@@ -48,6 +68,11 @@ def sort_players_by_value(driver):
         print("Wrong webpage in use. Unable to sort players by value.")
 
 def sort_players_by_salary(driver):
+    """
+    Sorts players in the table by their salaries
+
+    :param driver: Selenium WebDriver object
+    """
     current_url = driver.current_url
 
     if current_url.startswith('https://www.rotowire.com/daily/nba/optimizer.php'):
@@ -59,6 +84,12 @@ def sort_players_by_salary(driver):
         print("Wrong webpage in use. Unable to sort players by salary.")
 
 def get_player_info(driver):
+    """
+    Gets various info of players playing on today's daily fantasy basketball slate
+
+    :param driver: Selenium WebDriver object
+    :returns: A tuple of lists containing player names, their positions, salaries, and projected values
+    """
     player_names = get_player_names(driver)
     player_positions = get_player_positions(driver)
     player_status = get_player_status(driver)
@@ -67,6 +98,12 @@ def get_player_info(driver):
     return player_names, player_positions, player_status, player_salaries, player_values
 
 def get_player_names(driver):
+    """
+    Get the names of the players playing on today's daily fantasy basketball slate
+
+    :param driver: Selenium WebDriver object
+    :returns: A list containing the names of players playing today
+    """
     current_url = driver.current_url
 
     if current_url.startswith('https://www.rotowire.com/daily/nba/optimizer.php'):
@@ -78,6 +115,12 @@ def get_player_names(driver):
         print("Wrong webpage in use. Unable to get names of players.")
 
 def get_player_positions(driver):
+    """
+    Get the positions of the players playing on today's daily fantasy basketball slate
+
+    :param driver: Selenium WebDriver object
+    :returns: A list containing the positions of players playing today
+    """  
     current_url = driver.current_url
 
     if current_url.startswith('https://www.rotowire.com/daily/nba/optimizer.php'):
@@ -89,6 +132,12 @@ def get_player_positions(driver):
         print("Wrong webpage in use. Unable to get positions of players.")
 
 def get_player_status(driver):
+    """
+    Get the status of the players playing on today's daily fantasy basketball slate
+
+    :param driver: Selenium WebDriver object
+    :returns: A list containing the status of players playing today
+    """
     current_url = driver.current_url
 
     if current_url.startswith('https://www.rotowire.com/daily/nba/optimizer.php'):
@@ -100,6 +149,12 @@ def get_player_status(driver):
         print("Wrong webpage in use. Unable to get status of players.")
 
 def get_player_salaries(driver):
+    """
+    Get the salaries of the players playing on today's daily fantasy basketball slate
+
+    :param driver: Selenium WebDriver object
+    :returns: A list containing the salaries of players playing today
+    """
     current_url = driver.current_url
 
     if current_url.startswith('https://www.rotowire.com/daily/nba/optimizer.php'):
@@ -111,6 +166,12 @@ def get_player_salaries(driver):
         print("Wrong webpage in use. Unable to get salaries of players.")
 
 def get_player_proj_values(driver):
+    """
+    Get the projected values of the players playing on today's daily fantasy basketball slate
+
+    :param driver: Selenium WebDriver object
+    :returns: A list containing the projected values of players playing today
+    """
     current_url = driver.current_url
 
     if current_url.startswith('https://www.rotowire.com/daily/nba/optimizer.php'):
@@ -122,6 +183,11 @@ def get_player_proj_values(driver):
         print("Wrong webpage in use. Unable to get projected salaries of players.")
 
 def filter_by_position(driver, position):
+    """
+    Filter the player table by position
+
+    :param driver: Selenium WebDriver object
+    """
     if position == 'UTIL':
         filter_xpath = "//div[text()='All']"
     else:
@@ -131,6 +197,12 @@ def filter_by_position(driver, position):
     player_filter.click()
 
 def get_player_table_scrollbar(driver):
+    """
+    Get the player table's scrollbar element
+
+    :param driver: Selenium WebDriver object
+    :returns: The player table's scrollbar element
+    """
     player_table_scrollbar = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.XPATH, "//div[contains(@class, 'players-table')]/div[contains(@class, 'webix_vscroll_y')]"))
     )
