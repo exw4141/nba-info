@@ -40,7 +40,7 @@ def change_time_range_filter(driver, time_range=1):
         raise ValueError('Invalid time range given to function. Can only use statistics for games from the whole season or the past 7 days, 14 days, or 30 days')
 
     # Give time for the statistics table to reload
-    time.sleep(1)
+    time.sleep(2)
 
 def get_selected_time_range(driver):
     """
@@ -84,7 +84,7 @@ def change_position_filter(driver, position='ALL'):
         raise ValueError('Invalid position given to function. Can only be PG (point guard), SG (shooting guard), SF (small forward), PF (power forward), or C (center).')
 
     # Give time for the statistics table to reload
-    time.sleep(1)
+    time.sleep(2)
 
 def get_selected_position(driver):
     """
@@ -111,7 +111,7 @@ def sort_defenses_by_points(driver):
     sort_by_points_element.click()
 
     # Give time for the statistics table to reload
-    time.sleep(1)
+    time.sleep(2)
 
 def get_defense_papg(driver):
     """
