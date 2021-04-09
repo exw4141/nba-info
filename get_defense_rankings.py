@@ -22,10 +22,10 @@ class TeamDefense:
     def add_papg(self, time_range, position, papg):
         """
         Records the team's points allowed per game stat at the given position for the given time range
-        :param time_range: 
-        :param postion: 
-        :param papg: 
-        :raises ValueError: 
+        :param time_range: The time range for which the given points allowed per game stat is being recorded for
+        :param position: The position for which the given points allowed per game stat is being recorded for
+        :param papg: Number of points allowed per game 
+        :raises ValueError: Raised if the player position provided is not valid
         """
         if position == 'PG':
             self._pg_papg[time_range] = papg
@@ -41,6 +41,13 @@ class TeamDefense:
             raise ValueError('Invalid position given to function. Can only be PG (point guard), SG (shooting guard), SF (small forward), PF (power forward), or C (center).')
 
     def set_ranking(self, time_range, position, ranking):
+        """
+        Records the team's defensive ranking (based on points allowed per game) at the given position for the given time range
+        :param time_range: The time range for which the ranking is being recorded for
+        :param position: The position for which the ranking is being recorded for
+        :param ranking: Team's points allowed per game ranking compared to other teams
+        :raises ValueError: Raised if the player position provided is not valid
+        """
         if position == 'PG':
             self._pg_ranking[time_range] = ranking
         elif position == 'SG':
@@ -55,6 +62,10 @@ class TeamDefense:
             raise ValueError('Invalid position given to function. Can only be PG (point guard), SG (shooting guard), SF (small forward), PF (power forward), or C (center).')
 
     def create_defense_papg_summary(self):
+        """
+        Formats output to display each team's points allowed per game over different time ranges
+        :returns: A string that displays all teams's points allowed per game
+        """
         stat_summary = f"{self._team}\n"
         positions = ['PG', 'SG', 'SF', 'PF', 'C']
         for position in positions:
@@ -83,6 +94,10 @@ class TeamDefense:
         return stat_summary
 
     def create_defense_ranking_summary(self):
+        """
+        Formats output to display each team's defensive ranking over different time ranges
+        :returns: A string that displays all team's defensive rankings
+        """ 
         ranking_summary = f"{self._team}\n"
         positions = ['PG', 'SG', 'SF', 'PF', 'C']
         for position in positions:
