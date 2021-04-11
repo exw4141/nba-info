@@ -158,7 +158,6 @@ if __name__ == '__main__':
 
     lineup_optimizer.open_rotowire_lineup_optimizer(driver)
 
-    choosable_players = []
     fire_players = []
     cold_players = []
     all_players = []
@@ -197,11 +196,6 @@ if __name__ == '__main__':
         all_players.append(player)
 
         lineup_optimizer.clear_search_input(driver)
-
-    choosable_players.sort(key=attrgetter('num_fire_games', 'recent_streak', 'projected_points'), reverse=True)
-    print('Choosable players:', choosable_players, sep='\n')
-    print('Number of choosable players:', len(choosable_players))
-    print()
 
     fire_players.sort(key=attrgetter('recent_streak', 'num_fire_games', 'projected_points'), reverse=True)
     print('Fire players: ', fire_players, sep='\n')
