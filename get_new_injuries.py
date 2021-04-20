@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 from sites import rotowire_lineups as lineups
 from sites import rotowire_player_page as player_page
 
@@ -15,10 +16,13 @@ def process_injured_player_links(driver, injured_player_links):
     for player in injured_player_links.keys():
         player_link = injured_player_links[player]
         player_page.open_player_page(driver, player_link)
-        player_page.scroll_to_game_log(driver)
-        
-        recently_injured = player_page.get_recently_injured(driver)
-        if recently_injured:
+        try:
+            player_page.scroll_to_game_log(driver)
+            
+            recently_injured = player_page.get_recently_injured(driver)
+            if recently_injured:
+                recently_injured_players.append(player)
+        except NoSuchElementException:
             recently_injured_players.append(player)
     return recently_injured_players
 
