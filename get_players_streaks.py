@@ -168,8 +168,11 @@ if __name__ == '__main__':
 
         # Determine if the player was fire last game or not
         dk_point_history = dk_point_histories[player_name]
-        if dk_point_history[0] >= player_proj_points + 4.5:
-            on_fire = True
+        if len(dk_point_history) > 0:
+            if dk_point_history[0] >= player_proj_points + 4.5:
+                on_fire = True
+            else:
+                on_fire = False
         else:
             on_fire = False
 
